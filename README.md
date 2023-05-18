@@ -1,0 +1,2 @@
+This is a group project in the DIS course. In our project we aim at making a minigame based on football (soccer) players, teams, countries and trophies.
+The game will be a 1 versus 1 game, where both users will take turns at guessing a player that fits a certain profile (An example of a profile could be a Danish player who has won the Premier League, and has played for Bayern Munich).
