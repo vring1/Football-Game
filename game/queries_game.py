@@ -22,13 +22,12 @@ def insert_user_selects_player(usp: UserSelectsPlayer):
 
 
 # SELECT QUERIES
-# Måske name istedet...
-def get_user_by_id(id):
+def get_user_by_name(name):
     sql = """
     SELECT * FROM game.User
-    WHERE id = %s
+    WHERE name = %s
     """
-    db_cursor.execute(sql, (id,))
+    db_cursor.execute(sql, (name,))
     user = User(db_cursor.fetchone()) if db_cursor.rowcount > 0 else None
     return user
 
