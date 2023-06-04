@@ -13,6 +13,10 @@ Login = Blueprint('Login', __name__)
 def home():
     return render_template('pages/home.html')
 
+@Login.route("/play")
+def play():
+    return render_template('pages/game.html')
+
 #
 # @Login.route("/about")
 # def about():

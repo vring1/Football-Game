@@ -41,3 +41,14 @@ class UserSignupForm(FlaskForm):
     def validate_password_repeat(self, field):
         if not self.password.data == self.password_repeat.data:
             raise ValidationError(f'Provided passwords do not match.')
+
+
+class PlayerForm(FlaskForm):
+    playername = StringField('Playername',
+                       validators=[DataRequired(), Length(min=2, max=50)],
+                       render_kw=dict(placeholder='Playername'))
+    submit = SubmitField('Lock in')
+    #måske ligesom validate_user_name hav spillogik her?
+
+
+

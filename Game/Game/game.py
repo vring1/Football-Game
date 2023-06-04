@@ -86,6 +86,7 @@ def play_game():
 
             player1_guessed_right = False
 
+            # REFACTOR
             for player, data in players.items():
                 if player1_guess == player:  # tjek om spilleren findes
                     country = data[0]
