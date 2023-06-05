@@ -2,7 +2,7 @@ from flask import render_template, url_for, redirect, request, Blueprint
 from flask_login import login_user, current_user, logout_user
 import random
 from Game.forms import UserLoginForm, UserSignupForm, PlayForm
-from Game.queries import get_latest_round ,get_all_clubs_by_country_id,insert_game_round, get_user_by_name, insert_user, update_user, get_all_countries, insert_game, complete_game, get_next_seqeuence_id, get_game_by_status
+from Game.queries import get_all_clubs ,get_latest_round ,get_all_clubs_by_country_id,insert_game_round, get_user_by_name, insert_user, update_user, get_all_countries, insert_game, complete_game, get_next_seqeuence_id, get_game_by_status
 from Game.models import User
 
 Play = Blueprint('Play', __name__)
@@ -14,8 +14,16 @@ def play():
     form = PlayForm()
     title = 'User should choose a player'
     #if request.method == 'GET':
-    countries = get_all_countries()
-    return render_template('pages/game.html',form=form, title=title, countries=countries)
+    #countries = get_all_countries()
+    #clubs = get_all_clubs()
+    #print(countries)
+    #print(clubs)
+    # if ... then init_game()
+    game = get_game_by_status('STARTED')
+    if not game:
+        init_game()
+
+    return render_template('pages/game.html',form=form, title=title, game=game)
     
 
 def init_game():
