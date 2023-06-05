@@ -127,13 +127,14 @@ def get_all_clubs_by_country_id(country_id):
     cur = conn.cursor()
     sql = """
     SELECT id, player_id, country_id, club_id, full_name, country_name, club_name
-    FROM game.PlayerHasPlayedInClub
+    FROM game.ViewPlayersInClubs
     WHERE country_id = %s    
     """
     cur.execute(sql, (country_id))
     playerHasPlayedInClub = [PlayerHasPlayedInClub(res) for res in cur.fetchall()] if cur.rowcount > 0 else []
     cur.close()
     return playerHasPlayedInClub
+
 
 def get_game_by_status(game_status):
     cur = conn.cursor()
