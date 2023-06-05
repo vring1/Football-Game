@@ -31,7 +31,7 @@ class User(ModelUserMixin):
     def __init__(self, user_data: Dict):
         super(User, self).__init__(user_data)
 # self.id = user_data.get('id') SKAL IKKE MED DA DEN SÆTTES I SQL MED SEQUENCE: nextval('idseq')
-        self.id = user_data.get('id')
+        #self.id = user_data.get('id')
         self.name = user_data.get('name')
         self.password = user_data.get('password')
 
@@ -46,6 +46,20 @@ class Club(ModelMixin):
         super(User, self).__init__(club_data)
         self.id = club_data.get('id')
         self.name = club_data.get('name')
+
+class Game(ModelMixin):
+    def __init__(self, game_data: Dict):
+        super(User, self).__init__(game_data)
+        self.id = game_data.get('id')
+        self.user1_id = game_data.get('user1_id')
+        self.user2_id = game_data.get('user2_id')
+        self.country1_id = game_data.get('country1_id')
+        self.country2_id = game_data.get('country2_id')
+        self.user1_name = game_data.get('user1_name')
+        self.user2_name = game_data.get('user2_name')
+        self.country1_name = game_data.get('country1_name')
+        self.country2_name = game_data.get('country2_name')
+        self.game_status = game_data.get('game_status')
 
 #player
 class Player(ModelMixin):
@@ -62,5 +76,11 @@ class PlayerHasPlayedInClub(ModelMixin):
         self.id = playerHasPlayedInClub_data.get('id')
         self.player_id = playerHasPlayedInClub_data.get('player_id')
         self.club_id = playerHasPlayedInClub_data.get('club_id')
+        self.full_name = playerHasPlayedInClub_data.get('full_name')
+        self.country_name = playerHasPlayedInClub_data.get('country_name')
+        self.club_name = playerHasPlayedInClub_data.get('club_name')
+        self.country_id = playerHasPlayedInClub_data.get('country_id')
+
+
 
 

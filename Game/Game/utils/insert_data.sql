@@ -1,4 +1,3 @@
-DELETE FROM game.userselectsplayer;
 DELETE FROM game.playerhasplayedinclub;
 DELETE FROM game.player;
 DELETE FROM game.club;

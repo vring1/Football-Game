@@ -13,10 +13,6 @@ Login = Blueprint('Login', __name__)
 def home():
     return render_template('pages/home.html')
 
-@Login.route("/play")
-def play():
-    return render_template('pages/game.html')
-
 #
 # @Login.route("/about")
 # def about():
@@ -46,7 +42,7 @@ def login():
 @Login.route("/signup", methods=['GET', 'POST'])
 def signup():
     if current_user.is_authenticated:
-        return redirect(url_for('Login.home'))
+        return redirect(url_for('Login.login'))
     form = UserSignupForm()
     if request.method == 'POST':
         if form.validate_on_submit():
@@ -58,7 +54,7 @@ def signup():
             if user:
                 login_user(user, remember=True)
                 next_page = request.args.get('next')
-                return redirect(next_page) if next_page else redirect(url_for('Login.home'))
+                return redirect(next_page) if next_page else redirect(url_for('Login.login'))
     return render_template('pages/signup.html', form=form)
 
 
