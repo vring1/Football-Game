@@ -47,12 +47,12 @@ class UserSignupForm(FlaskForm):
 
 class PlayForm(FlaskForm):
     #One submit button and one stringfield
-    username1 = StringField('User1 name',
-                       validators=[DataRequired(), Length(min=2, max=50)],
-                       render_kw=dict(placeholder='Playername'))
-    username2 = StringField('User2 name',
-                       validators=[DataRequired(), Length(min=2, max=50)],
-                       render_kw=dict(placeholder='Playername'))
+    #username1 = StringField('User1 name',
+    #                   validators=[DataRequired(), Length(min=2, max=50)],
+    #                   render_kw=dict(placeholder='Playername'))
+    #username2 = StringField('User2 name',
+    #                   validators=[DataRequired(), Length(min=2, max=50)],
+    #                   render_kw=dict(placeholder='Playername'))
     playername = StringField('Playername for user 1',
                        validators=[DataRequired(), Length(min=2, max=50)],
                        render_kw=dict(placeholder='Playername'))

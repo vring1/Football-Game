@@ -148,7 +148,27 @@ CREATE OR REPLACE VIEW game.ViewGame AS
   JOIN game.Country co2 ON ga.user2_country_id = co2.id
 ;
 
--- View for dictionary
+-- View for game round
+CREATE OR REPLACE VIEW game.ViewGameRound AS
+  SELECT
+	gr.id,
+	gr.round,
+	gr.game_id,
+	gr.user1_club_id,
+	cl1.name user1_club_name,
+	gr.user1_player_guess,
+	gr.user1_correct,
+	gr.user2_club_id,
+	cl2.name user2_club_name,
+	gr.user2_player_guess,
+	gr.user2_correct,
+	gr.game_round_status
+  FROM game.GameRound gr
+  JOIN game.Club cl1 on (cl1.id = gr.user1_club_id)
+  JOIN game.Club cl2 on (cl2.id = gr.user2_club_id)
+;
+
+-- View for all players in clubs
 CREATE OR REPLACE VIEW game.ViewPlayersInClubs AS
   SELECT pl.id player_id, 
   	pl.full_name full_name,

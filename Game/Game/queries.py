@@ -1,5 +1,5 @@
 from Game import db_cursor, conn
-from Game.models import User, Player, PlayerHasPlayedInClub, Club, Country, Game
+from Game.models import User, Player, PlayerHasPlayedInClub, Club, Country, Game, GameRound
 
 
 # INSERT QUERIES
@@ -121,15 +121,15 @@ def get_game_by_status(game_status):
 
 def get_latest_round(game_id):
     sql = """
-    SELECT * FROM game.gameround gr
+    SELECT * FROM game.ViewGameRound gr
     where game_id = %s
     and round = (select max(r.round)
-			  from game.gameround r
+			  from game.ViewGameRound r
 			  where r.game_id = %s)
     """
     db_cursor.execute(sql, (game_id,game_id))
-    game = Game(db_cursor.fetchone()) if db_cursor.rowcount > 0 else None
-    return game
+    game_round = GameRound(db_cursor.fetchone()) if db_cursor.rowcount > 0 else None
+    return game_round
 
 
 # UPDATE QUERIES

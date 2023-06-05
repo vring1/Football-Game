@@ -81,6 +81,21 @@ class PlayerHasPlayedInClub(ModelMixin):
         self.club_name = playerHasPlayedInClub_data.get('club_name')
         self.country_id = playerHasPlayedInClub_data.get('country_id')
 
-
-
-
+class GameRound(ModelMixin):
+    def __init__(self, game_round_data: Dict):
+        super(User, self).__init__(game_round_data)
+        self.id = game_round_data.get('id')
+        self.round = game_round_data.get('round')
+        self.game_id = game_round_data.get('game_id')
+        self.user1_club_id = game_round_data.get('user1_club_id')
+        self.user1_club_name = game_round_data.get('user1_club_name')
+        self.user1_player_guess = game_round_data.get('user1_player_guess')
+        self.user1_correct = game_round_data.get('user1_correct')
+        self.user2_club_id = game_round_data.get('user2_club_id')
+        self.user2_club_name = game_round_data.get('user2_club_name')
+        self.user2_player_guess = game_round_data.get('user2_player_guess')
+        self.user2_correct = game_round_data.get('user2_correct')
+        self.game_round_status = game_round_data.get('game_round_status')
+        
+        
+        
