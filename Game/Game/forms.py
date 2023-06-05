@@ -57,7 +57,6 @@ class PlayForm(FlaskForm):
                        validators=[DataRequired(), Length(min=2, max=50)],
                        render_kw=dict(placeholder='Playername'))
     submit = SubmitField('Submit')
-    #submituser2 = SubmitField('Lock in')
     #måske ligesom validate_user_name hav spillogik her?
 
 

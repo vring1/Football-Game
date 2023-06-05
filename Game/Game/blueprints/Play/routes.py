@@ -12,13 +12,10 @@ Play = Blueprint('Play', __name__)
 #@loginrequired
 def play():
     form = PlayForm()
-    title = 'Player1 should choose a player'
-    player1 = "John"
-    player2 = "Ali"
-    play_game(player1,player2)
-
-
-    return render_template('pages/game.html', form=form, title=title)
+    title = 'User should choose a player'
+    #if request.method == 'GET':
+    countries = get_all_countries()
+    return render_template('pages/game.html',form=form, title=title, countries=countries)
     
 
 def init_game():

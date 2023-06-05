@@ -37,7 +37,7 @@ class User(ModelUserMixin):
 
 class Country(ModelMixin):
     def __init__(self, country_data: Dict):
-        super(User, self).__init__(country_data)
+        #super(User, self).__init__(country_data)
         self.id = country_data.get('id')
         self.name = country_data.get('name')
 

@@ -15,15 +15,35 @@
             {{ form.hidden_tag() }}
 
             <div class="form-group">
-                {{ form.name.label }}
-                {{ form.name }}
+                {{ form.playername.label }}
+                {{ form.playername }}
 
-                {{ form_errors(form.name.errors) }}
+                {{ form_errors(form.playername.errors) }}
             </div>
-
+            <div class="content-section">	
+                <p>Countries:</p>
+                <table class="table table-striped">
+                  <thead>
+                    <tr>
+                      <th scope="col">account_number</th>
+                      <th scope="col">cpr_number</th>
+                      <th scope="col">creation date</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                  {% for n in countries %}
+                    <tr>
+                      <th scope="row">{{n[0]}}</th>
+                      <td>{{n[1]}}</td>
+                    </tr>
+                  {% endfor %}
+                  </tbody>
+                </table>  
+              </div>
             <div class="form-group">
                 {{ form.submit(class="btn btn--full") }}
             </div>
+
         </form>
     </section>
 {% endblock %}

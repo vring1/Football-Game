@@ -1,0 +1,79 @@
+{% extends "layout.html" %}
+{% block content %}
+    <h1>{{ current_user.name }}</h1>
+	
+
+  <div class="content-section">	
+    <p>Investments:</p>
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th scope="col">account_number</th>
+          <th scope="col">cpr_number</th>
+          <th scope="col">creation date</th>
+        </tr>
+      </thead>
+      <tbody>
+      {% for n in inv %}
+        <tr>
+          <th scope="row">{{n[0]}}</th>
+          <td>{{n[1]}}</td>
+          <td>{{n[2]}}</td>
+        </tr>
+      {% endfor %}
+      </tbody>
+    </table>  
+  </div>
+  <div class="content-section">	
+    <p>Investment accounts:</p>
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th scope="col">account_number</th>
+          <th scope="col">cpr_number</th>
+          <th scope="col">account created</th>
+          <th scope="col">deposit total (CD)</th>
+        </tr>
+      </thead>
+      <tbody>
+      {% for n in inv_sums %}
+        <tr>
+          <th scope="row">{{n[0]}}</th>
+          <td>{{n[1]}}</td>
+          <td>{{n[2]}}</td>
+          <td>{{n[3]}}</td>
+        </tr>
+      {% endfor %}
+      </tbody>
+    </table>  
+  </div>
+  <div class="content-section">	
+    <p>Investment certificats of deposit:</p>
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th scope="col">acc</th>
+          <th scope="col">cd_number</th>
+          <th scope="col">start_date</th>
+          <th scope="col">maturity_date</th>
+          <th scope="col">rate</th>
+          <th scope="col">amount</th>
+        </tr>
+      </thead>
+      <tbody>
+      {% for n in inv_cd_list %}
+        <tr>
+          <th scope="row">{{n[0]}}</th>
+          <td>{{n[3]}}</td>
+          <td>{{n[4]}}</td>
+          <td>{{n[5]}}</td>
+          <td>{{n[6]}}</td>
+          <td>{{n[7]}}</td>
+        </tr>
+      {% endfor %}
+      </tbody>
+    </table>  
+  </div>
+
+	
+{% endblock content %}
