@@ -1,15 +1,15 @@
 {% extends 'base.html' %}
-{% from "components/macros.html" import cta_button %}
 {% from "components/macros.html" import form_errors %}
 
-{% block css %}
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/home.css') }}">
-{% endblock %}
+{% block title %}Play{% endblock %}
 
+{% block css %}
+    <link rel="stylesheet" href="{{ url_for('static', filename='/css/login.css') }}">
+{% endblock %}
 
 {% block content %}
     <section class="form-wrapper">
-        <h1>GAME Player 1/2 chooses player</h1>
+        <h1>Play</h1>
         <form method="POST" action="">
             {{ form.hidden_tag() }}
 

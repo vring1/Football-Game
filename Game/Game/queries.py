@@ -1,5 +1,5 @@
 from Game import db_cursor, conn
-from Game.models import User
+from Game.models import User, Player, PlayerHasPlayedInClub, Club, Country
 
 
 # INSERT QUERIES

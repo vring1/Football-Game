@@ -53,22 +53,22 @@ CREATE TABLE IF NOT EXISTS game.PlayerHasPlayedInClub(
 	ON DELETE NO ACTION
 );
 
-DROP TABLE IF EXISTS game.UserSelectsPlayer CASCADE;
-
-CREATE TABLE IF NOT EXISTS game.UserSelectsPlayer(
-	id integer not null,
-	user_id integer NOT NULL,
-	player_id integer NOT NULL,
-    CONSTRAINT UserSelectsPlayer_pkey PRIMARY KEY (id),
-	CONSTRAINT UserSelects_User_fk FOREIGN KEY (user_id)
-	REFERENCES game.User (id) MATCH SIMPLE
-	ON UPDATE NO ACTION
-	ON DELETE NO ACTION,
-	CONSTRAINT UserSelects_Player_fk FOREIGN KEY (player_id)
-	REFERENCES game.Player(id) MATCH SIMPLE
-	ON UPDATE NO ACTION
-	ON DELETE NO ACTION
-);
+--DROP TABLE IF EXISTS game.UserSelectsPlayer CASCADE;
+--
+--CREATE TABLE IF NOT EXISTS game.UserSelectsPlayer(
+--	id integer not null,
+--	user_id integer NOT NULL,
+--	player_id integer NOT NULL,
+--    CONSTRAINT UserSelectsPlayer_pkey PRIMARY KEY (id),
+--	CONSTRAINT UserSelects_User_fk FOREIGN KEY (user_id)
+--	REFERENCES game.User (id) MATCH SIMPLE
+--	ON UPDATE NO ACTION
+--	ON DELETE NO ACTION,
+--	CONSTRAINT UserSelects_Player_fk FOREIGN KEY (player_id)
+--	REFERENCES game.Player(id) MATCH SIMPLE
+--	ON UPDATE NO ACTION
+--	ON DELETE NO ACTION
+--);
 
 -- View for dictionary
 CREATE OR REPLACE VIEW game.ViewPlayersInClubs AS
