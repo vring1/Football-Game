@@ -109,19 +109,18 @@ def get_all_clubs():
     return club
 
 
-def get_all_clubs_by_player_id(id): 
+def get_all_clubs_by_player_name(player_name): #BRUG DENNE TIL AT CHEKKE PÅ INPUT I STRINGFIELD. CHECK MED club_id i ViewGameRound.
     cur = conn.cursor()
     sql = """
-    SELECT pl.id player_id, pl.full_name, cl.id club_id, cl.name club_name
-    FROM game.Player pl
-    JOIN game.PlayerHasPlayedInClub pic ON pic.player_id = pl.id
-    JOIN game.Club cl ON cl.id = pic.club_id
-    WHERE pl.id = %s    
+    SELECT id, player_id, country_id, club_id, full_name, country_name, club_name
+    FROM game.ViewPlayersInClubs
+    WHERE player_name = %s    
     """
-    cur.execute(sql, (id,))
-    club = [Club(res) for res in cur.fetchall()] if cur.rowcount > 0 else []
+    cur.execute(sql, (player_name,))
+    playerHasPlayedInClub = [PlayerHasPlayedInClub(res) for res in cur.fetchall()] if cur.rowcount > 0 else []
     cur.close()
-    return club
+    return playerHasPlayedInClub
+
 
 def get_all_clubs_by_country_id(country_id):
     cur = conn.cursor()
