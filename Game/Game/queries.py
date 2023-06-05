@@ -109,7 +109,7 @@ def get_all_clubs():
     return club
 
 
-def get_all_clubs_by_player_id(id):
+def get_all_clubs_by_player_id(id): 
     cur = conn.cursor()
     sql = """
     SELECT pl.id player_id, pl.full_name, cl.id club_id, cl.name club_name
@@ -130,7 +130,7 @@ def get_all_clubs_by_country_id(country_id):
     FROM game.ViewPlayersInClubs
     WHERE country_id = %s    
     """
-    cur.execute(sql, (country_id))
+    cur.execute(sql, (country_id,))
     playerHasPlayedInClub = [PlayerHasPlayedInClub(res) for res in cur.fetchall()] if cur.rowcount > 0 else []
     cur.close()
     return playerHasPlayedInClub

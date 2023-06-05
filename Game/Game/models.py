@@ -70,16 +70,16 @@ class Player(tuple):
         self.country_id = player_data[2]
 
 #playerhasplayedinclub
-class PlayerHasPlayedInClub(tuple):
+class PlayerHasPlayedInClub(tuple): #VIEW
     def __init__(self, playerHasPlayedInClub_data):
         #super(User, self).__init__(playerHasPlayedInClub_data)
-        self.id = playerHasPlayedInClub_data[0]
-        self.player_id = playerHasPlayedInClub_data[1]
-        self.country_id = playerHasPlayedInClub_data[2]
-        self.club_id = playerHasPlayedInClub_data[3]
-        self.full_name = playerHasPlayedInClub_data[4]
-        self.country_name = playerHasPlayedInClub_data[5]
-        self.club_name = playerHasPlayedInClub_data[6]
+        #self.id = playerHasPlayedInClub_data[0]
+        self.player_id = playerHasPlayedInClub_data[0]
+        self.country_id = playerHasPlayedInClub_data[1]
+        self.club_id = playerHasPlayedInClub_data[2]
+        self.full_name = playerHasPlayedInClub_data[3]
+        self.country_name = playerHasPlayedInClub_data[4]
+        self.club_name = playerHasPlayedInClub_data[5]
 
 class GameRound(tuple): #VIEW!
     def __init__(self, game_round_data):
