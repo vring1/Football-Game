@@ -58,6 +58,7 @@ def play():
                 winner = 'Player 2'
             if winner:
                 complete_game(game.id)
+                # TODO: REDIRECT TO ANOTHER HTML WITH WINNER, stats, a restart button (sending you back to this) etc.
             user1_possible_clubs = get_all_clubs_by_country_id(game.country1_id)
             user2_possible_clubs = get_all_clubs_by_country_id(game.country2_id)
             user1_club = random.choice(user1_possible_clubs)

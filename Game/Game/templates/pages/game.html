@@ -37,8 +37,14 @@
             </div>
         </div>
         <div class="content-section">	
-          {% for n in rounds %}
-            <div>{{n}}</div>  <!--JOHN-->
+          {% for rnd in rounds %}
+            <div>{{rnd}}</div>  <!--JOHN-->
+            <div>{{rnd[4]}}</div>  <!--club1-->
+            <div>{{rnd[5]}}</div>  <!--guess1-->
+            <div>{{rnd[6]}}</div>  <!--guesscorrect1-->
+            <div>{{rnd[8]}}</div>  <!--club2-->
+            <div>{{rnd[9]}}</div>  <!--guess1-->
+            <div>{{rnd[10]}}</div>  <!--guesscorrect1-->
           {% endfor %}
           <div class="user1">
             Player1's klub:
