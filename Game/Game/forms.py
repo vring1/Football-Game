@@ -52,6 +52,8 @@ class PlayForm(FlaskForm):
                        render_kw=dict(placeholder='Playername'))
     submit = SubmitField('Submit')
     
-
+class StartNewGameForm(FlaskForm):
+    #One submit button and one stringfield
+    submit = SubmitField('START NEW GAME')
 
 

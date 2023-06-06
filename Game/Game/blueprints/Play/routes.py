@@ -1,8 +1,9 @@
 from flask import render_template, url_for, redirect, request, Blueprint
 from flask_login import login_user, current_user, logout_user
 import random
+import psycopg2
 #from Game.forms import UserLoginForm, UserSignupForm, PlayForm
-from Game.forms import PlayForm
+from Game.forms import PlayForm, StartNewGameForm
 
 from Game.queries import get_all_rounds, update_game_round, get_played_by_player_name_and_country_id_and_club_id, get_all_clubs ,get_latest_round ,get_all_clubs_by_country_id,insert_game_round, get_user_by_name, insert_user, update_user, get_all_countries, insert_game, complete_game, get_next_seqeuence_id, get_game_by_status
 from Game.models import User
@@ -36,6 +37,7 @@ def play():
 
     if form.validate_on_submit():
         playername = form.playername.data
+        winner = None
         #Check hvis tur det er...
         if round.user1_player_guess == None: 
             #player1's tur
@@ -48,6 +50,14 @@ def play():
             player_exists = get_played_by_player_name_and_country_id_and_club_id(playername,game.country2_id,round.user2_club_id)
             update_game_round(round.round_number, game.id, round.user1_player_guess, round.user1_correct, playername, 'CORRECT' if player_exists else 'WRONG', 'COMPLETED')
             print("user2 round:",round)
+            round = get_latest_round(game.id)
+            if round.user1_correct == 'CORRECT' and round.user2_correct == 'WRONG':
+                #player1 wins
+                winner = 'Player 1'
+            if round.user1_correct == 'WRONG' and round.user2_correct == 'CORRECT':
+                winner = 'Player 2'
+            if winner:
+                complete_game(game.id)
             user1_possible_clubs = get_all_clubs_by_country_id(game.country1_id)
             user2_possible_clubs = get_all_clubs_by_country_id(game.country2_id)
             user1_club = random.choice(user1_possible_clubs)
@@ -56,10 +66,8 @@ def play():
 
         rounds = get_all_rounds(game.id)
         round = get_latest_round(game.id)
-        return render_template('pages/game.html',form=form, title=title, game=game, rounds=rounds, round=round)
+        return render_template('pages/game.html',form=form, title=title, game=game, rounds=rounds, round=round, winner=winner)
 
-        #Query på om det er rigtigt
-        print(playername)
     rounds = get_all_rounds(game.id)
     round = get_latest_round(game.id)
     print(rounds)
