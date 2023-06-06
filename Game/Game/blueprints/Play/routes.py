@@ -4,7 +4,7 @@ import random
 #from Game.forms import UserLoginForm, UserSignupForm, PlayForm
 from Game.forms import PlayForm
 
-from Game.queries import update_game_round, get_played_by_player_name_and_country_id_and_club_id, get_all_clubs ,get_latest_round ,get_all_clubs_by_country_id,insert_game_round, get_user_by_name, insert_user, update_user, get_all_countries, insert_game, complete_game, get_next_seqeuence_id, get_game_by_status
+from Game.queries import get_all_rounds, update_game_round, get_played_by_player_name_and_country_id_and_club_id, get_all_clubs ,get_latest_round ,get_all_clubs_by_country_id,insert_game_round, get_user_by_name, insert_user, update_user, get_all_countries, insert_game, complete_game, get_next_seqeuence_id, get_game_by_status
 from Game.models import User
 
 Play = Blueprint('Play', __name__)
@@ -31,7 +31,7 @@ def play():
         user2_possible_clubs = get_all_clubs_by_country_id(game.country2_id)
         user1_club = random.choice(user1_possible_clubs)
         user2_club = random.choice(user2_possible_clubs)
-        insert_game_round(round.round+1, game.id, user1_club.club_id, user2_club.club_id)
+        insert_game_round(round.round_number+1, game.id, user1_club.club_id, user2_club.club_id)
         round = get_latest_round(game.id)
 
     if form.validate_on_submit():
@@ -40,17 +40,30 @@ def play():
         if round.user1_player_guess == None: 
             #player1's tur
             player_exists = get_played_by_player_name_and_country_id_and_club_id(playername,game.country1_id,round.user1_club_id)
-            
+            print(player_exists)
             update_game_round(round.round_number, game.id, playername, 'CORRECT' if player_exists else 'WRONG', None, None, 'STARTED')
+            print("user1 round:",round)
+            print("game id:",game.id)
         else:
             player_exists = get_played_by_player_name_and_country_id_and_club_id(playername,game.country2_id,round.user2_club_id)
-
             update_game_round(round.round_number, game.id, round.user1_player_guess, round.user1_correct, playername, 'CORRECT' if player_exists else 'WRONG', 'COMPLETED')
+            print("user2 round:",round)
+            user1_possible_clubs = get_all_clubs_by_country_id(game.country1_id)
+            user2_possible_clubs = get_all_clubs_by_country_id(game.country2_id)
+            user1_club = random.choice(user1_possible_clubs)
+            user2_club = random.choice(user2_possible_clubs)
+            insert_game_round(round.round_number+1, game.id, user1_club.club_id, user2_club.club_id)
+
+        rounds = get_all_rounds(game.id)
+        round = get_latest_round(game.id)
+        return render_template('pages/game.html',form=form, title=title, game=game, rounds=rounds, round=round)
 
         #Query på om det er rigtigt
         print(playername)
-
-    return render_template('pages/game.html',form=form, title=title, game=game, round=round)
+    rounds = get_all_rounds(game.id)
+    round = get_latest_round(game.id)
+    print(rounds)
+    return render_template('pages/game.html',form=form, title=title, game=game, rounds=rounds, round=round)
 
 
 def init_game():

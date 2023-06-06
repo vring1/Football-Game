@@ -153,7 +153,18 @@ def get_all_clubs_by_country_id(country_id):
 def get_game_by_status(game_status):
     cur = conn.cursor()
     sql = """
-    SELECT * FROM game.ViewGame
+    SELECT 
+        game_id,
+        user1_id,
+        user1_name,
+        user2_id,
+        user2_name,
+        user1_country_id,
+        country1_name,
+        user2_country_id,
+        country2_name,
+        game_status
+    FROM game.ViewGame
     WHERE game_status = %s
     """
     cur.execute(sql, (game_status,))
@@ -185,6 +196,31 @@ def get_latest_round(game_id):
     """
     cur.execute(sql, (game_id,game_id))
     game_round = GameRound(cur.fetchone()) if cur.rowcount > 0 else None
+    cur.close()
+    return game_round
+
+def get_all_rounds(game_id):
+    cur = conn.cursor()
+    sql = """
+    SELECT 
+      gr.id,
+	  gr.round_number,
+	  gr.game_id,
+	  gr.user1_club_id,
+	  gr.user1_club_name,
+	  gr.user1_player_guess,
+	  gr.user1_correct,
+	  gr.user2_club_id,
+	  gr.user2_club_name,
+	  gr.user2_player_guess,
+	  gr.user2_correct,
+	  gr.game_round_status
+    FROM game.ViewGameRound gr
+    WHERE gr.game_id = %s
+    ORDER BY gr.round_number 
+    """
+    cur.execute(sql, (game_id,))
+    game_round = [GameRound(res) for res in cur.fetchall()] if cur.rowcount > 0 else []
     cur.close()
     return game_round
 

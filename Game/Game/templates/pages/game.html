@@ -28,22 +28,24 @@
 
           <div class="content-section">	
             <div class="user1">
-              {{game[2]}}:  <!--JOHN-->
-              {{game[6]}} <!--JOHNS LAND-->
+              {{game[2]}}:  <!--player1-->
+              {{game[6]}} <!--player1 LAND-->
             </div>
             <div class="user2">
-              {{game[4]}}:  <!--ALI-->
-              {{game[8]}} <!--ALIS LAND-->
+              {{game[4]}}:  <!--player2-->
+              {{game[8]}} <!--player2 LAND-->
             </div>
         </div>
         <div class="content-section">	
-          {{round}}  <!--JOHN-->
+          {% for n in rounds %}
+            <div>{{n}}</div>  <!--JOHN-->
+          {% endfor %}
           <div class="user1">
-            Johns klub:
+            Player1's klub:
             {{round[4]}}  <!--JOHN-->
           </div>
           <div class="user2">
-            Alis klub:
+            Player2's klub:
             {{round[8]}} <!--ALIS LAND-->
           </div>
       </div>

@@ -52,12 +52,12 @@ class Game(tuple):
         #super(User, self).__init__(game_data)
         self.id = game_data[0]
         self.user1_id = game_data[1]
-        self.user2_id = game_data[2]
-        self.country1_id = game_data[3]
-        self.country2_id = game_data[4]
-        self.user1_name = game_data[5]
-        self.user2_name = game_data[6]
-        self.country1_name = game_data[7]
+        self.user1_name = game_data[2]
+        self.user2_id = game_data[3]
+        self.user2_name = game_data[4]
+        self.country1_id = game_data[5]
+        self.country1_name = game_data[6]
+        self.country2_id = game_data[7]
         self.country2_name = game_data[8]
         self.game_status = game_data[9]
 
