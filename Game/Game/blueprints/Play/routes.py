@@ -1,7 +1,9 @@
 from flask import render_template, url_for, redirect, request, Blueprint
 from flask_login import login_user, current_user, logout_user
 import random
-from Game.forms import UserLoginForm, UserSignupForm, PlayForm
+#from Game.forms import UserLoginForm, UserSignupForm, PlayForm
+from Game.forms import PlayForm
+
 from Game.queries import get_all_clubs ,get_latest_round ,get_all_clubs_by_country_id,insert_game_round, get_user_by_name, insert_user, update_user, get_all_countries, insert_game, complete_game, get_next_seqeuence_id, get_game_by_status
 from Game.models import User
 
@@ -13,6 +15,14 @@ Play = Blueprint('Play', __name__)
 def play():
     form = PlayForm()
     title = 'User should choose a player'
+    #form.playername.data = None
+    if form.validate_on_submit():
+        playername = form.playername.data
+        #Check hvis tur det er...
+        
+        #Query på om det er rigtigt
+        print(playername)
+
     #if request.method == 'GET':
     #countries = get_all_countries()
     #clubs = get_all_clubs()
@@ -23,8 +33,21 @@ def play():
     if not game:
         init_game()
 
-    return render_template('pages/game.html',form=form, title=title, game=game)
-    
+    round = get_round(game)
+
+
+    return render_template('pages/game.html',form=form, title=title, game=game, round=round)
+
+def get_round(game):
+    game_round = get_latest_round(game.id)
+    if game_round == None or game_round.status == 'COMPLETED': 
+        #TODO: SØRG FOR AT SAMME KLUB IKKE KAN VÆLGES TO GANGE
+        user1_possible_clubs = get_all_clubs_by_country_id(game.user1_country.id)
+        user2_possible_clubs = get_all_clubs_by_country_id(game.user2_country.id)
+        user1_club = random.choice(user1_possible_clubs)
+        user2_club = random.choice(user2_possible_clubs)
+        insert_game_round(game_round.round+1, game.id, user1_club.id, user2_club.id)
+    return get_latest_round(game.id)    
 
 def init_game():
 
@@ -93,14 +116,3 @@ def play_game():
     # END GAME with query
 
     #complete_game() #sæt status for game to COMPLETED
-
-def get_round(game):
-    game_round = get_latest_round(game.id)
-    if game_round.status == 'COMPLETED': 
-        #TODO: SØRG FOR AT SAMME KLUB IKKE KAN VÆLGES TO GANGE
-        user1_possible_clubs = get_all_clubs_by_country_id(game.user1_country.id)
-        user2_possible_clubs = get_all_clubs_by_country_id(game.user2_country.id)
-        user1_club = random.choice(user1_possible_clubs)
-        user2_club = random.choice(user2_possible_clubs)
-        insert_game_round(game_round.round+1, game.id, user1_club.id, user2_club.id)
-    return get_latest_round(game.id)

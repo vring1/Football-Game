@@ -5,61 +5,37 @@
 {% block title %}Play{% endblock %}
 
 {% block css %}
-    <link rel="stylesheet" href="{{ url_for('static', filename='/css/login.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='/css/game.css') }}">
 {% endblock %}
 
 {% block content %}
     <section class="form-wrapper">
-        <h1>Play</h1>
+        <h1>Guess the player given a country and a club! First one to guess wrong in a round, where the other player guesses right, is the loser!</h1>
+        <h4>The game is turn-based. Player1 starts by inputting a playername and submitting, then player2 and so on.</h4>
+
         <form method="POST" action="">
             {{ form.hidden_tag() }}
+        
+          <div class="form-group">
+              {{ form.playername.label }}
+              {{ form.playername }}
+              {{ form_errors(form.playername.errors) }}
+          </div>
+          <div class="form-group">
+              {{ form.submit(class="btn btn--full") }}
+          </div>
 
-            <div class="form-group">
-                {{ form.playername.label }}
-                {{ form.playername }}
 
-                {{ form_errors(form.playername.errors) }}
+          <div class="content-section">	
+            <div class="user1">
+              {{game[2]}}:  <!--JOHN-->
+              {{game[6]}} <!--JOHNS LAND-->
             </div>
-            <div class="content-section">	
-                <p>Countries:</p>
-                <table class="table table-striped">
-                  <thead>
-                    <tr>
-                      <th scope="col">account_number</th>
-                      <th scope="col">cpr_number</th>
-                      <th scope="col">creation date</th>
-                    </tr>
-                  </thead>
-                  <!-- <tbody>
-                  {% for n in countries %}
-                    <tr>
-                      <th scope="row">{{n[0]}}</th>
-                      <td>{{n[1]}}</td>
-                    </tr>
-                  {% endfor %}
-                  {% for n in clubs %}
-                    <tr>
-                      <th scope="row">{{n[0]}}</th>
-                      <td>{{n[1]}}</td>
-                    </tr>
-                  {% endfor %}
-                  </tbody> -->
-                  <p>{{game[0][0]}}</p>
-                  {% for n in game %}
-                    <tr>
-                      <th scope="row">{{n[0]}}</th>
-                      <td>{{n[1]}}</td>
-                      <td>{{n[2]}}</td>
-                      <td>{{n[3]}}</td>
-                      <td>{{n[4]}}</td>
-                    </tr>
-                  {% endfor %}
-                </table>  
-              </div>
-            <div class="form-group">
-                {{ form.submit(class="btn btn--full") }}
+            <div class="user2">
+              {{game[4]}}:  <!--ALI-->
+              {{game[8]}} <!--ALIS LAND-->
             </div>
-
+        </div>
         </form>
     </section>
 {% endblock %}

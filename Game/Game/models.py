@@ -84,7 +84,7 @@ class PlayerHasPlayedInClub(tuple): #VIEW
 class GameRound(tuple): #VIEW!
     def __init__(self, game_round_data):
         #super(User, self).__init__(game_round_data)
-        self.id = game_round_data[0]
+        self.id = game_round_data[0] # DENNE SKAL MÅSKE IKKE UDKOMMENTERES!!!!!!
         self.round = game_round_data[1]
         self.game_id = game_round_data[2]
         self.user1_club_id = game_round_data[3]

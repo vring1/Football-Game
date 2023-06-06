@@ -112,7 +112,7 @@ def get_all_clubs():
 def get_all_clubs_by_player_name(player_name): #BRUG DENNE TIL AT CHEKKE PÅ INPUT I STRINGFIELD. CHECK MED club_id i ViewGameRound.
     cur = conn.cursor()
     sql = """
-    SELECT id, player_id, country_id, club_id, full_name, country_name, club_name
+    SELECT player_id, full_name, country_id, country_name, club_id, club_name
     FROM game.ViewPlayersInClubs
     WHERE player_name = %s    
     """
@@ -125,7 +125,7 @@ def get_all_clubs_by_player_name(player_name): #BRUG DENNE TIL AT CHEKKE PÅ INP
 def get_all_clubs_by_country_id(country_id):
     cur = conn.cursor()
     sql = """
-    SELECT id, player_id, country_id, club_id, full_name, country_name, club_name
+    SELECT player_id, full_name, country_id, country_name, club_id, club_name
     FROM game.ViewPlayersInClubs
     WHERE country_id = %s    
     """
