@@ -86,14 +86,14 @@ DROP TABLE IF EXISTS game.GameRound CASCADE;
 
 CREATE TABLE IF NOT EXISTS game.GameRound (
 	id integer not null,
-	round integer NOT NULL,
+	round_number integer NOT NULL,
 	game_id integer NOT NULL,
 	user1_club_id integer NOT NULL,
 	user1_player_guess varchar(50),
-	user1_correct boolean,
+	user1_correct varchar(50),
 	user2_club_id integer NOT NULL,
 	user2_player_guess varchar(50),
-	user2_correct boolean,
+	user2_correct varchar(50),
 	game_round_status varchar(20) NOT NULL,
     CONSTRAINT GameRound_pkey PRIMARY KEY (id),
 	CONSTRAINT GameRound_Game_fk FOREIGN KEY (game_id)
@@ -152,7 +152,7 @@ CREATE OR REPLACE VIEW game.ViewGame AS
 CREATE OR REPLACE VIEW game.ViewGameRound AS
   SELECT
 	gr.id,
-	gr.round,
+	gr.round_number,
 	gr.game_id,
 	gr.user1_club_id,
 	cl1.name user1_club_name,

@@ -3,8 +3,8 @@ DELETE FROM game.player;
 DELETE FROM game.club;
 DELETE FROM game.country;
 
-INSERT INTO game.User (id, name) VALUES (1, 'John');
-INSERT INTO game.User (id, name) VALUES (2, 'Ali');
+INSERT INTO game.User (id, name) VALUES (1, 'Player1');
+INSERT INTO game.User (id, name) VALUES (2, 'Player2');
 
 INSERT INTO game.Country (id, name) VALUES (1, 'Portugal');
 INSERT INTO game.Country (id, name) VALUES (2, 'Danmark');

@@ -75,17 +75,17 @@ class PlayerHasPlayedInClub(tuple): #VIEW
         #super(User, self).__init__(playerHasPlayedInClub_data)
         #self.id = playerHasPlayedInClub_data[0]
         self.player_id = playerHasPlayedInClub_data[0]
-        self.country_id = playerHasPlayedInClub_data[1]
-        self.club_id = playerHasPlayedInClub_data[2]
-        self.full_name = playerHasPlayedInClub_data[3]
-        self.country_name = playerHasPlayedInClub_data[4]
+        self.full_name = playerHasPlayedInClub_data[1]
+        self.country_id = playerHasPlayedInClub_data[2]
+        self.country_name = playerHasPlayedInClub_data[3]
+        self.club_id = playerHasPlayedInClub_data[4]
         self.club_name = playerHasPlayedInClub_data[5]
 
 class GameRound(tuple): #VIEW!
     def __init__(self, game_round_data):
         #super(User, self).__init__(game_round_data)
         self.id = game_round_data[0] # DENNE SKAL MÅSKE IKKE UDKOMMENTERES!!!!!!
-        self.round = game_round_data[1]
+        self.round_number = game_round_data[1]
         self.game_id = game_round_data[2]
         self.user1_club_id = game_round_data[3]
         self.user1_club_name = game_round_data[4]
@@ -96,4 +96,4 @@ class GameRound(tuple): #VIEW!
         self.user2_player_guess = game_round_data[9]
         self.user2_correct = game_round_data[10]
         self.game_round_status = game_round_data[11]
-        
+    
