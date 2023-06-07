@@ -1,6 +1,4 @@
 {% extends 'base.html' %}
-{% from "components/macros.html" import cta_button %}
-{% from "components/macros.html" import form_errors %}
 
 {% block title %}Play{% endblock %}
 
@@ -10,8 +8,8 @@
 
 {% block content %}
     <section class="form-wrapper">
-        <h1>Guess the player given a country and a club! First one to guess wrong in a round, where the other player guesses right, is the loser!</h1>
-        <h4>The game is turn-based. Player1 starts by inputting a playername and submitting, then player2 and so on.</h4>
+        <h1>Guess the player given a country and a club! First one to guess right in a round, where the other user guesses wrong, is the winner!</h1>
+        <h4>The game is turn-based. User1 starts by inputting a playername and submitting, then User2 and so on. (Use 'players_carrers.txt' as cheatsheet).</h4>
 
         <form method="POST" action="">
             {{ form.hidden_tag() }}
@@ -32,7 +30,6 @@
         <div class="input-playername">
           {{ form.playername.label }}
           {{ form.playername }}
-          {{ form_errors(form.playername.errors) }}
         </div>
         <div class="submit-button">
           {{ form.submit(class="btn btn--full") }}

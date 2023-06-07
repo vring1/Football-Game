@@ -18,26 +18,17 @@ def home():
     if form.validate_on_submit():
         return redirect(url_for('Play.play'))
     return render_template('pages/home.html', form=form)
-    
+
 
 @Play.route("/play", methods=['GET', 'POST'])
 def play():
     form = PlayForm()
-
     game = get_game_by_status('STARTED')
     if not game:
         init_game()
         game = get_game_by_status('STARTED')
 
     game_round = get_latest_round(game.id)
-    if game_round is None or game_round.game_round_status == 'COMPLETED':
-        # TODO: SØRG FOR AT SAMME KLUB IKKE KAN VÆLGES TO GANGE
-        user1_possible_clubs = get_all_clubs_by_country_id(game.country1_id)
-        user2_possible_clubs = get_all_clubs_by_country_id(game.country2_id)
-        user1_club = random.choice(user1_possible_clubs)
-        user2_club = random.choice(user2_possible_clubs)
-        insert_game_round(game_round.round_number + 1, game.id, user1_club.club_id, user2_club.club_id)
-        game_round = get_latest_round(game.id)
 
     if form.validate_on_submit():
         playername = form.playername.data
@@ -63,11 +54,9 @@ def play():
             if winner:
                 return redirect(url_for('Play.game_completed'))
             else:
-                user1_possible_clubs = get_all_clubs_by_country_id(game.country1_id)
-                user2_possible_clubs = get_all_clubs_by_country_id(game.country2_id)
-                user1_club = random.choice(user1_possible_clubs)
-                user2_club = random.choice(user2_possible_clubs)
-                insert_game_round(game_round.round_number + 1, game.id, user1_club.club_id, user2_club.club_id)
+                result = make_new_round(game.id, game_round.round_number + 1, game.country1_id, game.country2_id)
+                if not result:
+                    return redirect(url_for('Play.no_more_clubs'))
 
         rounds = get_all_rounds(game.id)
         game_round = get_latest_round(game.id)
@@ -92,18 +81,25 @@ def init_game():
         if user2_country != user1_country:
             break
     # insert random country in game-table (user1_country and user2_country)
-
     insert_game(user1_id, user2_id, user1_country.id, user2_country.id)
-
     game = get_game_by_status('STARTED')
+    result = make_new_round(game.id, 1, user1_country.id, user2_country.id)
+    if not result:
+        return redirect(url_for('Play.no_more_clubs'))
 
-    user1_possible_clubs = get_all_clubs_by_country_id(user1_country.id)
-    user2_possible_clubs = get_all_clubs_by_country_id(user2_country.id)
 
-    user1_club = random.choice(user1_possible_clubs)
-    user2_club = random.choice(user2_possible_clubs)
+def make_new_round(game_id, game_round, country1_id, country2_id):
+    try:
+        user1_possible_clubs = get_all_clubs_by_country_id(game_id, country1_id, 'User1')
+        user1_club = random.choice(user1_possible_clubs)
+        user2_possible_clubs = get_all_clubs_by_country_id(game_id, country2_id, 'User2')
+        user2_club = random.choice(user2_possible_clubs)
+        insert_game_round(game_round, game_id, user1_club.club_id, user2_club.club_id)
+        return True
+    except Exception as err:
+        print("Oops!  Unexpected error: ", err)
+        return False
 
-    insert_game_round(1, game.id, user1_club.club_id, user2_club.club_id)
 
 
 @Play.route("/game_completed", methods=['GET', 'POST'])
@@ -122,3 +118,13 @@ def game_completed():
 
     return render_template('pages/game_completed.html', form=form_game_completed, title="Game completed", game=game,
                            rounds=rounds, winner=winner)
+
+
+@Play.route("/no_more_clubs", methods=['GET', 'POST'])
+def no_more_clubs():
+    form = StartGameForm()
+    if form.validate_on_submit():
+        game = get_game_by_status('STARTED')
+        complete_game(game.id)
+        return redirect(url_for('Play.play'))
+    return render_template('pages/no_more_clubs.html', form=form)

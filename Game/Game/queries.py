@@ -137,14 +137,20 @@ def get_played_by_player_name_and_country_id_and_club_id(player_name, country_id
     return playerHasPlayedInClub
 
 
-def get_all_clubs_by_country_id(country_id):
+def get_all_clubs_by_country_id(game_id, country_id, username):
     cur = conn.cursor()
     sql = """
-    SELECT player_id, full_name, country_id, country_name, club_id, club_name
-    FROM game.ViewPlayersInClubs
-    WHERE country_id = %s    
+    SELECT pc.player_id, pc.full_name, pc.country_id, pc.country_name, pc.club_id, pc.club_name
+    FROM game.ViewPlayersInClubs pc
+    WHERE pc.country_id = %s
+    AND NOT EXISTS (SELECT 'x'
+                    FROM game.GameRound gr
+                    WHERE gr.game_id = %s
+                      AND (('User1' = %s AND gr.user1_club_id = pc.club_id) OR
+                           ('User2' = %s AND gr.user2_club_id = pc.club_id))
+                    )
     """
-    cur.execute(sql, (country_id,))
+    cur.execute(sql, (country_id, game_id, username, username,))
     playerHasPlayedInClub = [PlayerHasPlayedInClub(res) for res in cur.fetchall()] if cur.rowcount > 0 else []
     cur.close()
     return playerHasPlayedInClub
@@ -237,6 +243,7 @@ def update_user(id, playing_as):
     conn.commit()
     cur.close()
 
+
 def update_game_round(round_number, game_id, user1_player_guess, user1_correct, user2_player_guess, user2_correct, game_round_status):
     cur = conn.cursor()
     sql = """
@@ -253,6 +260,8 @@ def update_game_round(round_number, game_id, user1_player_guess, user1_correct, 
     conn.commit()
     cur.close()
 
+
+# Overvej evt. også en simplere update, som kun bruges til at opdatere has_won, guessed_right, no_of_wins.
 def complete_game(id):
     cur = conn.cursor()
     sql = """
@@ -263,16 +272,3 @@ def complete_game(id):
     cur.execute(sql, (id,))
     conn.commit()
     cur.close()
-# Overvej evt. også en simplere update, som kun bruges til at opdatere has_won, guessed_right, no_of_wins.
-
-
-# Bruges, når et nyt spil skal starte.
-def delete_user_selects_player():
-    cur = conn.cursor()
-    sql = """
-    DELETE FROM game.UserSelectsPlayer
-    """
-    cur.execute(sql)
-    conn.commit()
-    cur.close()
-
