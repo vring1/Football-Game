@@ -1,0 +1,59 @@
+{% extends 'base.html' %}
+{% from "components/macros.html" import cta_button %}
+{% from "components/macros.html" import form_errors %}
+
+{% block title %}Play{% endblock %}
+
+{% block css %}
+<link rel="stylesheet" href="{{ url_for('static', filename='/css/game.css') }}">
+{% endblock %}
+
+{% block content %}
+<section class="form-wrapper">
+    <h1>Game has completed!</h1>
+    <h2>The winner is: </h2>
+    <div>{{winner}}</div>
+
+    <form method="POST" action="">
+        {{ form.hidden_tag() }}
+
+        <div class="form-group">
+            {{ form.submit(class="btn btn--full") }}
+        </div>
+
+        <div class="content-section">
+            <div class="user1">
+                {{game[2]}}
+                {{game[6]}}
+            </div>
+            <div class="user2">
+                {{game[4]}}
+                {{game[8]}}
+            </div>
+        </div>
+        <div class="content-section">
+            {% for rnd in rounds %}
+            <div>{{rnd}}</div>  <!--JOHN-->
+            <div>{{rnd[4]}}</div>  <!--club1-->
+            <div>{{rnd[5]}}</div>  <!--guess1-->
+            <div>{{rnd[6]}}</div>  <!--guesscorrect1-->
+            <div>{{rnd[8]}}</div>  <!--club2-->
+            <div>{{rnd[9]}}</div>  <!--guess1-->
+            <div>{{rnd[10]}}</div>  <!--guesscorrect1-->
+            {% endfor %}
+            <div class="user1">
+                Player1's klub:
+                {{round[4]}}  <!--JOHN-->
+            </div>
+            <div class="user2">
+                Player2's klub:
+                {{round[8]}}
+            </div>
+        </div>
+        <div class="winner">
+            THE WINNER IS:
+            {{winner}}
+        </div>
+    </form>
+</section>
+{% endblock %}

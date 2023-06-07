@@ -16,49 +16,63 @@
         <form method="POST" action="">
             {{ form.hidden_tag() }}
         
-          <div class="form-group">
-              {{ form.playername.label }}
-              {{ form.playername }}
-              {{ form_errors(form.playername.errors) }}
-          </div>
-          <div class="form-group">
-              {{ form.submit(class="btn btn--full") }}
-          </div>
-
-
-          <div class="content-section">	
+          
+          <div class="user-section">	
             <div class="user1">
-              {{game[2]}}:  <!--player1-->
+              <!--{{game[2]}}:  player1-->
+              User1: 
               {{game[6]}} <!--player1 LAND-->
             </div>
             <div class="user2">
-              {{game[4]}}:  <!--player2-->
+              <!--{{game[4]}}:  player2-->
+              User2: 
               {{game[8]}} <!--player2 LAND-->
             </div>
         </div>
-        <div class="content-section">	
+        <div class="input-playername">
+          {{ form.playername.label }}
+          {{ form.playername }}
+          {{ form_errors(form.playername.errors) }}
+        </div>
+        <div class="submit-button">
+          {{ form.submit(class="btn btn--full") }}
+        </div>
+        <div class="club1">Club</div>
+        <div class="user1-clubs">
           {% for rnd in rounds %}
-            <div>{{rnd}}</div>  <!--JOHN-->
-            <div>{{rnd[4]}}</div>  <!--club1-->
-            <div>{{rnd[5]}}</div>  <!--guess1-->
-            <div>{{rnd[6]}}</div>  <!--guesscorrect1-->
-            <div>{{rnd[8]}}</div>  <!--club2-->
-            <div>{{rnd[9]}}</div>  <!--guess1-->
-            <div>{{rnd[10]}}</div>  <!--guesscorrect1-->
+            <div>{{rnd[4]}}</div>  <!--clubs-->
           {% endfor %}
-          <div class="user1">
-            Player1's klub:
-            {{round[4]}}  <!--JOHN-->
-          </div>
-          <div class="user2">
-            Player2's klub:
-            {{round[8]}} 
-          </div>
-      </div>
-      <div class="winner">
-        THE WINNER IS:
-        {{winner}}
-      </div>
+        </div>
+        <div class="club2">Club</div>
+        <div class="user2-clubs">
+          {% for rnd in rounds %}
+            <div>{{rnd[8]}}</div>  <!--clubs-->
+          {% endfor %}
+        </div>
+        <div class="guess1">Guess</div>
+        <div class="user1-guess">
+          {% for rnd in rounds %}
+            <div>{{rnd[5]}}</div>  <!--clubs-->
+          {% endfor %}
+        </div>
+        <div class="guess2">Guess</div>
+        <div class="user2-guess">
+          {% for rnd in rounds %}
+            <div>{{rnd[9]}}</div>  <!--clubs-->
+          {% endfor %}
+        </div>
+        <div class="result1">Result</div>
+        <div class="user1-guesscorrect">
+          {% for rnd in rounds %}
+            <div>{{rnd[6]}}</div>  <!--clubs-->
+          {% endfor %}
+        </div>
+        <div class="result2">Result</div>
+        <div class="user2-guesscorrect">
+          {% for rnd in rounds %}
+            <div>{{rnd[10]}}</div>  <!--clubs-->
+          {% endfor %}
+        </div>
         </form>
     </section>
 {% endblock %}

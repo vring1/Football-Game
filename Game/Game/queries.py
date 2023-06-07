@@ -257,23 +257,14 @@ def complete_game(id):
     cur = conn.cursor()
     sql = """
     UPDATE game.Game
-    SET STATUS = 'COMPLETED'
+    SET game_status = 'COMPLETED'
     WHERE id = %s
     """
     cur.execute(sql, (id,))
     conn.commit()
     cur.close()
 # Overvej evt. også en simplere update, som kun bruges til at opdatere has_won, guessed_right, no_of_wins.
-def complete_game(id):
-    cur = conn.cursor()
-    sql = """
-    UPDATE game.Game
-    SET STATUS = 'COMPLETED'
-    WHERE id = %s
-    """
-    cur.execute(sql, (id,))
-    conn.commit()
-    cur.close()
+
 
 # Bruges, når et nyt spil skal starte.
 def delete_user_selects_player():

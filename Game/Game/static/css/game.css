@@ -1,0 +1,139 @@
+.user-section {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+  }
+  
+  .user1{
+    position:absolute;
+    margin-right: 800px;
+  }
+  .user2 {
+    position:absolute;
+    margin-left: 800px;
+  }
+  
+  .input-playername {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 20px;
+  }
+  
+  .user1-clubs {
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 20px;
+    margin-left: 50px;
+  }
+  .user1-guess {
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 20px;
+    margin-left: 250px;
+  }
+  .user1-guesscorrect {
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 20px;
+    margin-left: 450px;
+  }
+  .user2-clubs {
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 20px;
+    margin-left: 900px;
+  }
+  .user2-guess {
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 20px;
+    margin-left: 1100px;
+  }  
+  .user2-guesscorrect {
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 20px;
+    margin-left: 1300px;
+  }  
+  .submit-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .btn {
+    padding: 10px 20px;
+    background-color: #4CAF50;
+    color: white;
+    text-align: center;
+    text-decoration: none;
+    font-size: 16px;
+    border: none;
+    cursor: pointer;
+  }
+  
+  .btn--full {
+    width: 100px;
+    margin-left: 10px;
+  }
+  .club1{
+    font-weight: bold;
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-left: 85px;
+  }
+  .club2{
+    font-weight: bold;
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-left: 900px;
+  }
+  .guess1{
+    font-weight: bold;
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-left: 285px;
+  }
+  .guess2{
+    font-weight: bold;
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-left: 1100px;
+  }
+  .result1{
+    font-weight: bold;
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-left: 465px;
+  }
+  .result2{
+    font-weight: bold;
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-left: 1300px;
+  }
