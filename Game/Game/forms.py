@@ -56,4 +56,6 @@ class StartNewGameForm(FlaskForm):
     #One submit button and one stringfield
     submit = SubmitField('START NEW GAME')
 
-
+class StartGameForm(FlaskForm):
+    #One submit button and one stringfield
+    submit = SubmitField('START THE GAME')

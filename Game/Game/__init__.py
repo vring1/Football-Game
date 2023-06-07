@@ -25,8 +25,6 @@ login_manager.login_view = 'login'
 login_manager.login_message_category = 'info'
 
 #from Game import filters
-from Game.blueprints.Login.routes import Login
 from Game.blueprints.Play.routes import Play
 
-app.register_blueprint(Login)
 app.register_blueprint(Play)

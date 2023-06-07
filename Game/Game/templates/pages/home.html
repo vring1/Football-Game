@@ -9,20 +9,14 @@
 
 {% block content %}
     <section class="form-wrapper">
-        <h1>HOME Player 1/2 chooses player</h1>
+        <h1>Press button to start the game!</h1>
         <form method="POST" action="">
             {{ form.hidden_tag() }}
-
+    
             <div class="form-group">
-                {{ form.playername.label }}
-                {{ form.playername }}
-
-                {{ form_errors(form.playername.errors) }}
+                {{ form.submit(class="btn btn--playagain") }}
             </div>
-
-            <div class="form-group">
-                {{ form.submit(class="btn btn--full") }}
-            </div>
+    
         </form>
     </section>
 {% endblock %}

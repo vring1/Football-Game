@@ -2,7 +2,7 @@ from flask import render_template, url_for, redirect, request, Blueprint
 from flask_login import login_user, current_user, logout_user
 import random
 import psycopg2
-from Game.forms import PlayForm, StartNewGameForm
+from Game.forms import PlayForm, StartNewGameForm, StartGameForm
 
 from Game.queries import get_all_rounds, update_game_round, get_played_by_player_name_and_country_id_and_club_id, \
     get_all_clubs, get_latest_round, get_all_clubs_by_country_id, insert_game_round, get_user_by_name, insert_user, \
@@ -11,6 +11,14 @@ from Game.models import User
 
 Play = Blueprint('Play', __name__)
 
+
+@Play.route('/', methods=['GET', 'POST'])
+def home():
+    form = StartGameForm()
+    if form.validate_on_submit():
+        return redirect(url_for('Play.play'))
+    return render_template('pages/home.html', form=form)
+    
 
 @Play.route("/play", methods=['GET', 'POST'])
 def play():
@@ -105,9 +113,9 @@ def game_completed():
     rounds = get_all_rounds(game.id)
     last_round = get_latest_round(game.id)
     if last_round.user1_correct == 'CORRECT':
-        winner = "Player 1"
+        winner = "User1"
     if last_round.user2_correct == 'CORRECT':
-        winner = "Player 2"
+        winner = "User2"
     if form_game_completed.validate_on_submit():
         complete_game(game.id)
         return redirect(url_for('Play.play'))
