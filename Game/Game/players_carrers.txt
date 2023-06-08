@@ -1,16 +1,16 @@
-Cristiano Ronaldo:
+Cristiano Ronaldo (Portugal):
 Sporting CP
 Manchester United
 Real Madrid
 Juventus
 Al Nassr
 
-Bernardo Silva:
+Bernardo Silva (Portugal):
 Benfica
 Monaco
 Manchester City
 
-Joao Cancelo:
+Joao Cancelo (Portugal):
 Benfica
 Valencia
 Inter Milan
@@ -18,14 +18,14 @@ Juventus
 Manchester City
 Bayern Munchen
 
-Christian Eriksen:
+Christian Eriksen (Danmark):
 Ajax
 Tottenham
 Inter Milan
 Brentford
 Manchester United
 
-Michael Laudrup:
+Michael Laudrup (Danmark):
 Brøndby
 Lazio
 Juventus
@@ -34,7 +34,7 @@ Real Madrid
 Vissel Kobe
 Ajax
 
-Brian Laudrup:
+Brian Laudrup (Danmark):
 Brøndby IF
 Bayern Munchen
 Fiorentina
@@ -44,26 +44,26 @@ Chelsea
 FC København
 Ajax
 
-Lionel Messi:
+Lionel Messi (Argentina):
 Barcelona
 Paris Saint Germain
 
-Maradona:
+Maradona (Argentina):
 Boca Juniors
 Barcelona
 Napoli
 Sevilla
 
-Antoine Griezmann:
+Antoine Griezmann (Frankrig):
 Real Sociedad
 Atletico Madrid
 Barcelona
 
-Karim Benzema:
+Karim Benzema (Frankrig):
 Lyon
 Real Madrid
 
-Olivier Giroud:
+Olivier Giroud (Frankrig):
 Grenoble
 Montpellier
 Arsenal

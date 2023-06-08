@@ -1,28 +1,28 @@
-from Game import db_cursor, conn
-from Game.models import User, Player, PlayerHasPlayedInClub, Club, Country, Game, GameRound
+from Game import conn
+from Game.models import PlayerHasPlayedInClub, Country, Game, GameRound
 
 
 # INSERT QUERIES
-def insert_user(user: User):
-    cur = conn.cursor()
-    sql = """
-    INSERT INTO game.User(id, name, password)
-    VALUES (nextval('game.id_seq'), %s, %s)
-    """
-    cur.execute(sql, (user.name, user.password))
-    conn.commit()
-    cur.close()
+#def insert_user(user: User):
+#    cur = conn.cursor()
+#    sql = """
+#    INSERT INTO game.User(id, name, password)
+#    VALUES (nextval('game.id_seq'), %s, %s)
+#    """
+#    cur.execute(sql, (user.name, user.password))
+#    conn.commit()
+#    cur.close()
 
    
-def insert_user_selects_player(id, user_id, player_id):
-    cur = conn.cursor()
-    sql = """
-    INSERT INTO game.UserSelectsPlayer(id, user_id, player_id)
-    VALUES (%s, %s, %s)
-    """
-    cur.execute(sql, (id, user_id, player_id))
-    conn.commit()
-    cur.close()
+#def insert_user_selects_player(id, user_id, player_id):
+#    cur = conn.cursor()
+#    sql = """
+#    INSERT INTO game.UserSelectsPlayer(id, user_id, player_id)
+#    VALUES (%s, %s, %s)
+#    """
+#    cur.execute(sql, (id, user_id, player_id))
+#    conn.commit()
+#    cur.close()
 
 
 def insert_game(user1_id, user2_id, user1_country_id, user2_country_id):
@@ -48,39 +48,39 @@ def insert_game_round(round_number, game_id, user1_club_id, user2_club_id):
 
 
 # SELECT QUERIES
-def get_user_by_name(name):
-    cur = conn.cursor()
-    sql = """
-    SELECT * FROM game.User
-    WHERE name = %s
-    """
-    cur.execute(sql, (name,))
-    user = User(cur.fetchone()) if cur.rowcount > 0 else None
-    cur.close()
-    return user
+#def get_user_by_name(name):
+#    cur = conn.cursor()
+#    sql = """
+#    SELECT * FROM game.User
+#    WHERE name = %s
+#    """
+#    cur.execute(sql, (name,))
+#    user = User(cur.fetchone()) if cur.rowcount > 0 else None
+#    cur.close()
+#    return user
 
 # Get next sequence number
-def get_next_seqeuence_id():
-    cur = conn.cursor()
-    sql = """
-    SELECT nextval('game.id_seq')
-    """
-    cur.execute(sql)
-    id = int(cur.fetchone()) if cur.rowcount > 0 else None
-    cur.close()
-    return id
+#def get_next_seqeuence_id():
+#    cur = conn.cursor()
+#    sql = """
+#    SELECT nextval('game.id_seq')
+#    """
+#    cur.execute(sql)
+#    id = int(cur.fetchone()) if cur.rowcount > 0 else None
+#    cur.close()
+#    return id
 
 # Skal bruges når det indtastede spillernavn skal slåes op.
-def get_player_by_name(name):
-    cur = conn.cursor()
-    sql = """
-    SELECT * FROM game.Player p
-    WHERE UPPER(p.name) = UPPER(%s)
-    """
-    cur.execute(sql, (name,))
-    player = Player(cur.fetchone()) if cur.rowcount > 0 else None
-    cur.close()
-    return player
+#def get_player_by_name(name):
+#    cur = conn.cursor()
+#    sql = """
+#    SELECT * FROM game.Player p
+#    WHERE UPPER(p.name) = UPPER(%s)
+#    """
+#    cur.execute(sql, (name,))
+#    player = Player(cur.fetchone()) if cur.rowcount > 0 else None
+#    cur.close()
+#    return player
 
 
 def get_all_countries():
@@ -96,30 +96,30 @@ def get_all_countries():
     return country
 
 
-def get_all_clubs():
-    cur = conn.cursor()
-    sql = """
-    SELECT id, name
-    FROM game.Club
-    ORDER BY name
-    """
-    cur.execute(sql)
-    club = [Club(res) for res in cur.fetchall()] if cur.rowcount > 0 else []
-    cur.close()
-    return club
+#def get_all_clubs():
+#    cur = conn.cursor()
+#    sql = """
+#    SELECT id, name
+#    FROM game.Club
+#    ORDER BY name
+#    """
+#    cur.execute(sql)
+#    club = [Club(res) for res in cur.fetchall()] if cur.rowcount > 0 else []
+#    cur.close()
+#    return club
 
 
-def get_all_clubs_by_player_name(player_name): #BRUG DENNE TIL AT CHEKKE PÅ INPUT I STRINGFIELD. CHECK MED club_id i ViewGameRound.
-    cur = conn.cursor()
-    sql = """
-    SELECT player_id, full_name, country_id, country_name, club_id, club_name
-    FROM game.ViewPlayersInClubs
-    WHERE player_name = %s    
-    """
-    cur.execute(sql, (player_name,))
-    playerHasPlayedInClub = [PlayerHasPlayedInClub(res) for res in cur.fetchall()] if cur.rowcount > 0 else []
-    cur.close()
-    return playerHasPlayedInClub
+#def get_all_clubs_by_player_name(player_name): #BRUG DENNE TIL AT CHEKKE PÅ INPUT I STRINGFIELD. CHECK MED club_id i ViewGameRound.
+#    cur = conn.cursor()
+#    sql = """
+#    SELECT player_id, full_name, country_id, country_name, club_id, club_name
+#    FROM game.ViewPlayersInClubs
+#    WHERE player_name = %s    
+#    """
+#    cur.execute(sql, (player_name,))
+#    playerHasPlayedInClub = [PlayerHasPlayedInClub(res) for res in cur.fetchall()] if cur.rowcount > 0 else []
+#    cur.close()
+#    return playerHasPlayedInClub
 
 
 def get_played_by_player_name_and_country_id_and_club_id(player_name, country_id, club_id): #BRUG DENNE TIL AT CHEKKE PÅ INPUT I STRINGFIELD. CHECK MED club_id i ViewGameRound.
@@ -232,16 +232,16 @@ def get_all_rounds(game_id):
 
 
 # UPDATE QUERIES
-def update_user(id, playing_as):
-    cur = conn.cursor()
-    sql = """
-    UPDATE game.user
-    SET playing_as = %s
-    WHERE id = %s
-    """
-    cur.execute(sql, (id, playing_as))
-    conn.commit()
-    cur.close()
+#def update_user(id, playing_as):
+#    cur = conn.cursor()
+#    sql = """
+#    UPDATE game.user
+#    SET playing_as = %s
+#    WHERE id = %s
+#    """
+#    cur.execute(sql, (id, playing_as))
+#    conn.commit()
+#    cur.close()
 
 
 def update_game_round(round_number, game_id, user1_player_guess, user1_correct, user2_player_guess, user2_correct, game_round_status):
