@@ -10,11 +10,7 @@ In pgAdmin, create a database called 'game'.
 
 In pgAdmin, create a schema within the database called 'game'.
 
-Create a virtuel environment (venv). Activate the environment by running the following command if using unix:
-
-    source Scripts/activate
-
-Now the environment is activated, and the following command can be run to install the necessary packages:
+Run the following command to install the necessary packages: (could be done in a virtual environment)
 
     pip install -r requirements.txt
 
