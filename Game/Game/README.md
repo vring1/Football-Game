@@ -4,11 +4,15 @@
 
 
 ## Initialization
-Create a database called 'game'.
+In pgAdmin, create a database called 'game'.
 
-Create a schema called 'game'.
+In pgAdmin, create a schema called 'game'.
 
-Instead of creating a venv, just activate the one already created. The only requirement is psycopg2, so we just pushed the venv config also.
+(SLET)Instead of creating a venv, just activate the one already created. The only requirement is psycopg2, so we just pushed the venv config also.
+
+Now run:
+
+    pip install psycopg2
 
 The .env file should be as the following:
 
