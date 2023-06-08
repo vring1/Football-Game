@@ -7,8 +7,14 @@
 Clone / download repository files.
 
 In pgAdmin, create a database called 'game'.
+Within the created database in pgAdmin, create a schema called 'game'.
 
-In pgAdmin, create a schema within the database called 'game'.
+Activate the virtual environment using the OS/shell dependent command for utils/activate
+    Using the bash shell:
+        source utils/activate
+
+    Using Windows cmd
+        utils/activate.bat
 
 Run the following command to install the necessary packages: (could be done in a virtual environment)
 
@@ -21,12 +27,12 @@ The .env file should be as the following:
     DB_PASSWORD=postgres || <postgres_user_password>
     DB_NAME=game || <postgres_db_name>
 
-To initialize the database do:
+To initialize the database run the following commands.
 
     cd utils
     python init_db.py
 
-Lastly, do:
+Now that everything has been set up, you can run it.
     
     flask run
 
@@ -45,15 +51,15 @@ The assigned countries are used the whole game. After each round, the users get 
 
 The first user to guess right in a round, where the other user guesses wrong, is the winner.
 
-Use 'players_carrers.txt' as cheatsheet, if You're having trouble guessing the players.
+If you are having trouble guessing the correct player, please use 'players_careers.txt' as cheatsheet.
 
 
 ## Backend issues
-A game is only set as completed when a new game is started. This could create problems, as if the user opens another browser, they could keep playing on a game, which should be completed.
+A game is only set as completed when a new game is started. This could create problems: if the user opens another browser, they could keep playing a game, which should be completed.
 
 
 ## Frontend issues
-We haven't had the time to create a beautiful webpage, and it is kind of buggy depending on the size of the user's window. To be perfectly alligned, the window has t o be a specific size.
+We did not prioritize creating a beautiful webpage. Our CSS styling is absolute, which can problematic when viewed on displays on different sizes. This would, had we prioritized this more, be fixed by using flexboxes.
 
 
 
