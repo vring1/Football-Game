@@ -4,15 +4,19 @@
 
 
 ## Initialization
+Clone / download repository files.
+
 In pgAdmin, create a database called 'game'.
 
-In pgAdmin, create a schema called 'game'.
+In pgAdmin, create a schema within the database called 'game'.
 
-(SLET)Instead of creating a venv, just activate the one already created. The only requirement is psycopg2, so we just pushed the venv config also.
+Create a virtuel environment (venv). Activate the environment by running the following command if using unix:
 
-Now run:
+    source Scripts/activate
 
-    pip install psycopg2
+Now the environment is activated, and the following command can be run to install the necessary packages:
+
+    pip install -r requirements.txt
 
 The .env file should be as the following:
 
@@ -46,3 +50,18 @@ The assigned countries are used the whole game. After each round, the users get 
 The first user to guess right in a round, where the other user guesses wrong, is the winner.
 
 Use 'players_carrers.txt' as cheatsheet, if You're having trouble guessing the players.
+
+
+## Backend issues
+A game is only set as completed when a new game is started. This could create problems, as if the user opens another browser, they could keep playing on a game, which should be completed.
+
+
+## Frontend issues
+We haven't had the time to create a beautiful webpage, and it is kind of buggy depending on the size of the user's window. To be perfectly alligned, the window has t o be a specific size.
+
+
+
+
+
+
+
