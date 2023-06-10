@@ -11,10 +11,10 @@ Within the created database in pgAdmin, create a schema called 'game'.
 
 Activate the virtual environment using the OS/shell dependent command for utils/activate
     Using the bash shell:
-        source utils/activate
+        source Scripts/activate
 
     Using Windows cmd
-        utils/activate.bat
+        Scripts/activate.bat
 
 Run the following command to install the necessary packages: (could be done in a virtual environment)
 
