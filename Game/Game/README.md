@@ -1,7 +1,7 @@
 # Football Game
 
 ## E/R Diagram
-
+<img src="ER_diagram.png">
 
 ## Initialization
 Clone / download repository files.
@@ -9,7 +9,11 @@ Clone / download repository files.
 In pgAdmin, create a database called 'game'.
 Within the created database in pgAdmin, create a schema called 'game'.
 
-Activate the virtual environment using the OS/shell dependent command for utils/activate
+(Optional) Create a virtual environment using the following command:
+
+    python -m venv /path/to/this/directory
+
+(Optional) Activate the virtual environment using the OS/shell dependent command for utils/activate
     Using the bash shell:
         source Scripts/activate
 

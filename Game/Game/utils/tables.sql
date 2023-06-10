@@ -4,7 +4,6 @@ CREATE TABLE IF NOT EXISTS game.User(
 	id integer not null,
 	playing_as integer,
 	name varchar(50) UNIQUE,
-	--password varchar(120),
     CONSTRAINT User_pkey PRIMARY KEY (id)
 );
 
@@ -106,24 +105,6 @@ CREATE TABLE IF NOT EXISTS game.GameRound (
 	ON DELETE NO ACTION,
 	CONSTRAINT GameRound_Club2_fk FOREIGN KEY (user2_club_id)
 	REFERENCES game.Club(id) MATCH SIMPLE
-	ON UPDATE NO ACTION
-	ON DELETE NO ACTION
-);
-
-DROP TABLE IF EXISTS game.GameStatistics CASCADE;
-
-CREATE TABLE IF NOT EXISTS game.GameStatistics(
-	id integer not null,
-	winner_user_id integer NOT NULL,
-	loser_user_id integer NOT NULL,
-	game_played timestamp NOT NULL,
-    CONSTRAINT GameStats_pkey PRIMARY KEY (id),
-	CONSTRAINT GameStats_Winner_User_fk FOREIGN KEY (winner_user_id)
-	REFERENCES game.User (id) MATCH SIMPLE
-	ON UPDATE NO ACTION
-	ON DELETE NO ACTION,
-	CONSTRAINT GameStats_Loser_User_fk FOREIGN KEY (loser_user_id)
-	REFERENCES game.User (id) MATCH SIMPLE
 	ON UPDATE NO ACTION
 	ON DELETE NO ACTION
 );

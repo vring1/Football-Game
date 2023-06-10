@@ -30,9 +30,7 @@ def play():
     if form.validate_on_submit():
         playername = form.playername.data
         winner = None
-        # Check hvis tur det er...
         if game_round.user1_player_guess is None:
-            # player1's tur
             player_exists = get_played_by_player_name_and_country_id_and_club_id(playername, game.country1_id,
                                                                                  game_round.user1_club_id)
             update_game_round(game_round.round_number, game.id, playername, 'CORRECT' if player_exists else 'WRONG', None,
@@ -44,7 +42,6 @@ def play():
                               'CORRECT' if player_exists else 'WRONG', 'COMPLETED')
             game_round = get_latest_round(game.id)
             if game_round.user1_correct == 'CORRECT' and game_round.user2_correct == 'WRONG':
-                # player1 wins
                 winner = 'Player 1'
             if game_round.user1_correct == 'WRONG' and game_round.user2_correct == 'CORRECT':
                 winner = 'Player 2'
@@ -66,18 +63,15 @@ def play():
 
 
 def init_game():
-    # INSERT userid in game table (1 & 2)
     user1_id = 1
     user2_id = 2
 
-    # SELECT ALL countries and load into array
     countries = get_all_countries()
     user1_country = random.choice(countries)
     while True:
         user2_country = random.choice(countries)
         if user2_country != user1_country:
             break
-    # insert random country in game-table (user1_country and user2_country)
     insert_game(user1_id, user2_id, user1_country.id, user2_country.id)
     game = get_game_by_status('STARTED')
     result = make_new_round(game.id, 1, user1_country.id, user2_country.id)
