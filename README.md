@@ -1,7 +1,7 @@
 # Football Game
 
 ## E/R Diagram
-<img src="ER_diagram.png">
+<img src="ER_diagram/ER_diagram.png">
 
 ## Initialization
 Clone / download repository files.
