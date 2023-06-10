@@ -1,16 +1,15 @@
 {% extends 'base.html' %}
 
-{% block title %}Play{% endblock %}
+{% block title %}{{winner}} wins!{% endblock %}
 
 {% block css %}
-<link rel="stylesheet" href="{{ url_for('static', filename='/css/game.css') }}">
+<link rel="stylesheet" href="{{ url_for('static', filename='/css/home.css') }}">
 {% endblock %}
 
 {% block content %}
 <section class="form-wrapper">
-    <h1>Game has completed!</h1>
-    <h2>The winner is: </h2>
-    <div>{{winner}}</div>
+    <h1>Game Completed!</h1>
+    <h2>The winner is: {{winner}}</h2>
 
     <form method="POST" action="">
         {{ form.hidden_tag() }}

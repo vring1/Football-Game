@@ -1,80 +1,103 @@
-.user-section {
-    display: flex;
-    justify-content: center;
-    align-items: flex-start;
-  }
-  
-  .user1{
-    position:absolute;
-    margin-right: 800px;
-  }
-  .user2 {
-    position:absolute;
-    margin-left: 800px;
-  }
-  
-  .input-playername {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin-bottom: 20px;
-  }
-  
-  .user1-clubs {
-    position: absolute;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin-top: 20px;
-    margin-left: 50px;
-  }
-  .user1-guess {
-    position: absolute;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin-top: 20px;
-    margin-left: 250px;
-  }
-  .user1-guesscorrect {
-    position: absolute;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin-top: 20px;
-    margin-left: 450px;
-  }
-  .user2-clubs {
-    position: absolute;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin-top: 20px;
-    margin-left: 900px;
-  }
-  .user2-guess {
-    position: absolute;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin-top: 20px;
-    margin-left: 1100px;
-  }  
-  .user2-guesscorrect {
-    position: absolute;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin-top: 20px;
-    margin-left: 1300px;
-  }  
-  .submit-button {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-  
-  .btn {
+/* {% extends 'base.html' %}
+
+{% block title %}Play{% endblock %}
+
+{% block css %}
+    <link rel="stylesheet" href="{{ url_for('static', filename='/css/game.css') }}">
+{% endblock %}
+
+{% block content %}
+    <section class="form-wrapper">
+        <h1>Guess the player given a country and a club!</h1>
+        <h2>First one to guess right in a round, where the other user guesses wrong, is the winner!</h2> 
+        <h4>The game is turn-based. User1 starts by inputting a playername and submitting, then User2 and so on. (Use 'players_carrers.txt' as cheatsheet).</h4>
+
+        <form method="POST" action="">
+            {{ form.hidden_tag() }}
+        
+          
+        <div class="user-section">	
+          <div class="user1">
+            <!--{{game[2]}}:  player1-->
+            <h2>User 1, your country is {{game[6]}}</h2><br> 
+          </div>
+          <div class="user2">
+            <!--{{game[4]}}:  player2-->
+            <h2>User 2, your country is {{game[8]}}</h2><br> 
+          </div>
+        </div>
+
+        <div class="tables">
+          <div class="table">
+            <div class="table-row">
+              <div class="table-cell header">Club</div>
+              <div class="table-cell header">Guess</div>
+              <div class="table-cell header">Correct?</div>
+            </div>
+            {% for rnd in rounds %}
+              <div class="table-row">
+                <div class="table-cell">{{rnd[4]}}</div>
+                <div class="table-cell">{{rnd[5]}}</div>
+                <div class="table-cell">{{rnd[6]}}</div>
+              </div>
+            {% endfor %}
+          </div>
+        
+          <div class="table">
+            <div class="table-row">
+              <div class="table-cell header">Club</div>
+              <div class="table-cell header">Guess</div>
+              <div class="table-cell header">Correct?</div>
+            </div>
+            {% for rnd in rounds %}
+              <div class="table-row">
+                <div class="table-cell">{{rnd[8]}}</div>
+                <div class="table-cell">{{rnd[9]}}</div>
+                <div class="table-cell">{{rnd[10]}}</div>
+              </div>
+            {% endfor %}
+          </div>
+        </div>
+        
+        
+
+        <div class="form-and-submit">
+          {{ form.playername.label }}
+          {{ form.playername }}
+          {{ form.submit(class="btn btn--full") }}
+        </div>
+
+        </form>
+    </section>
+{% endblock %}
+*/
+
+body {
+    background-color: #f2f2f2;
+}
+
+h1 {
+    font-size: 50px;
+    font-weight: bold;
+    text-align: center;
+    font-family: 'Roboto', sans-serif;
+}
+h2 {
+    font-size: 30px;
+    font-weight: bold;
+    text-align: center;
+    margin-top: -30px;
+    font-family: 'Roboto', sans-serif;
+}
+h4 {
+    font-size: 20px;
+    font-weight: bold;
+    text-align: center;
+    margin-top: -20px;
+    font-family: 'Roboto', sans-serif;
+}
+
+.btn {
     padding: 10px 20px;
     background-color: #4CAF50;
     color: white;
@@ -83,61 +106,51 @@
     font-size: 16px;
     border: none;
     cursor: pointer;
+    font-family: 'Roboto', sans-serif;
+}
+
+.user-section {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-evenly;
+    margin-top: 100px;
+}
+
+.tables {
+    display: flex;
   }
   
-  .btn--full {
-    width: 100px;
-    margin-left: 10px;
+  .table {
+    flex: 1;
+    margin-right: 20px;
   }
-  .btn--playagain {
-    width: 500px;
-    margin-left: 10px;
+  
+  .table:last-child {
+    margin-right: 0;
   }
-  .club1{
+  
+  .table-row {
+    display: flex;
+  }
+  
+  .table-cell {
+    flex: 1;
+    padding: 5px;
+    text-align: center; /* Center the text horizontally */
+    align-items: center; /* Center the text vertically */
+  }
+  
+  .header {
     font-weight: bold;
-    position: absolute;
+  }
+
+/* place on top of each other */
+.form-and-submit {
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin-left: 85px;
-  }
-  .club2{
-    font-weight: bold;
-    position: absolute;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin-left: 900px;
-  }
-  .guess1{
-    font-weight: bold;
-    position: absolute;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin-left: 285px;
-  }
-  .guess2{
-    font-weight: bold;
-    position: absolute;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin-left: 1100px;
-  }
-  .result1{
-    font-weight: bold;
-    position: absolute;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin-left: 465px;
-  }
-  .result2{
-    font-weight: bold;
-    position: absolute;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin-left: 1300px;
-  }
+    justify-content: space-evenly;
+    padding: 20px;
+    margin-top: 50px;
+}

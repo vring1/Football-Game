@@ -1,6 +1,6 @@
 {% extends 'base.html' %}
 
-{% block title %}Play{% endblock %}
+{% block title %}Game in progress{% endblock %}
 
 {% block css %}
     <link rel="stylesheet" href="{{ url_for('static', filename='/css/game.css') }}">
@@ -8,68 +8,66 @@
 
 {% block content %}
     <section class="form-wrapper">
-        <h1>Guess the player given a country and a club! First one to guess right in a round, where the other user guesses wrong, is the winner!</h1>
+        <h1>Guess the player given a country and a club!</h1>
+        <h2>First one to guess right in a round, where the other user guesses wrong, is the winner!</h2> 
         <h4>The game is turn-based. User1 starts by inputting a playername and submitting, then User2 and so on. (Use 'players_carrers.txt' as cheatsheet).</h4>
 
         <form method="POST" action="">
             {{ form.hidden_tag() }}
         
           
-          <div class="user-section">	
-            <div class="user1">
-              <!--{{game[2]}}:  player1-->
-              User1: 
-              {{game[6]}} <!--player1 LAND-->
-            </div>
-            <div class="user2">
-              <!--{{game[4]}}:  player2-->
-              User2: 
-              {{game[8]}} <!--player2 LAND-->
-            </div>
+        <div class="user-section">	
+          <div class="user1">
+            <!--{{game[2]}}:  player1-->
+            <h2>User 1, your country is {{game[6]}}</h2><br> 
+          </div>
+          <div class="user2">
+            <!--{{game[4]}}:  player2-->
+            <h2>User 2, your country is {{game[8]}}</h2><br> 
+          </div>
         </div>
-        <div class="input-playername">
+
+        <div class="tables">
+          <div class="table">
+            <div class="table-row">
+              <div class="table-cell header">Club</div>
+              <div class="table-cell header">Guess</div>
+              <div class="table-cell header">Correct?</div>
+            </div>
+            {% for rnd in rounds %}
+              <div class="table-row">
+                <div class="table-cell">{{rnd[4]}}</div>
+                <div class="table-cell">{{rnd[5]}}</div>
+                <div class="table-cell">{{rnd[6]}}</div>
+              </div>
+            {% endfor %}
+          </div>
+        
+          <div class="table">
+            <div class="table-row">
+              <div class="table-cell header">Club</div>
+              <div class="table-cell header">Guess</div>
+              <div class="table-cell header">Correct?</div>
+            </div>
+            {% for rnd in rounds %}
+              <div class="table-row">
+                <div class="table-cell">{{rnd[8]}}</div>
+                <div class="table-cell">{{rnd[9]}}</div>
+                <div class="table-cell">{{rnd[10]}}</div>
+              </div>
+            {% endfor %}
+          </div>
+        </div>
+        
+        
+
+        <div class="form-and-submit">
           {{ form.playername.label }}
           {{ form.playername }}
-        </div>
-        <div class="submit-button">
+          <br>
           {{ form.submit(class="btn btn--full") }}
         </div>
-        <div class="club1">Club</div>
-        <div class="user1-clubs">
-          {% for rnd in rounds %}
-            <div>{{rnd[4]}}</div>  <!--clubs-->
-          {% endfor %}
-        </div>
-        <div class="club2">Club</div>
-        <div class="user2-clubs">
-          {% for rnd in rounds %}
-            <div>{{rnd[8]}}</div>  <!--clubs-->
-          {% endfor %}
-        </div>
-        <div class="guess1">Guess</div>
-        <div class="user1-guess">
-          {% for rnd in rounds %}
-            <div>{{rnd[5]}}</div>  <!--clubs-->
-          {% endfor %}
-        </div>
-        <div class="guess2">Guess</div>
-        <div class="user2-guess">
-          {% for rnd in rounds %}
-            <div>{{rnd[9]}}</div>  <!--clubs-->
-          {% endfor %}
-        </div>
-        <div class="result1">Result</div>
-        <div class="user1-guesscorrect">
-          {% for rnd in rounds %}
-            <div>{{rnd[6]}}</div>  <!--clubs-->
-          {% endfor %}
-        </div>
-        <div class="result2">Result</div>
-        <div class="user2-guesscorrect">
-          {% for rnd in rounds %}
-            <div>{{rnd[10]}}</div>  <!--clubs-->
-          {% endfor %}
-        </div>
+
         </form>
     </section>
 {% endblock %}

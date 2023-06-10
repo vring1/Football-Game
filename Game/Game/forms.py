@@ -49,8 +49,9 @@ class PlayForm(FlaskForm):
     #One submit button and one stringfield
     playername = StringField('',
                        validators=[DataRequired(), Length(min=2, max=50)],
-                       render_kw=dict(placeholder='Playername'))
-    submit = SubmitField('Submit')
+                       render_kw=dict(placeholder='Player Name'))
+    submit = SubmitField('SUBMIT')
+
     
 class StartNewGameForm(FlaskForm):
     #One submit button and one stringfield

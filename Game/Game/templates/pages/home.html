@@ -4,14 +4,20 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='css/home.css') }}">
 {% endblock %}
 
+{% block title %}Home{% endblock %}
 
 {% block content %}
     <section class="form-wrapper">
-        <h1>Press button to start the game!</h1>
+        <div class="form-header">
+            <h1>Welcome to the Football Quiz!</h1>
+            <h4>This game will test your knowledge of football clubs around the world!</h4>
+            <h4>It is a sudden-death game. You will be given a country and a random club. Your task is to correctly guess a player that fits the description</h4>
+            <h1>Press the button to start the game!</h1>
+        </div>
         <form method="POST" action="">
             {{ form.hidden_tag() }}
     
-            <div class="form-group">
+            <div class="form-button">
                 {{ form.submit(class="btn btn--playagain") }}
             </div>
     
