@@ -11,16 +11,16 @@ Within the created database in pgAdmin, create a schema called 'game'.
 
 (Optional) Create a virtual environment using the following command:
 
-    python -m venv /path/to/this/directory
+    python -m venv Game/Game/
 
-(Optional) Activate the virtual environment using the OS/shell dependent command for utils/activate
+(Optional) Enter Game/Game/ and activate the virtual environment using the OS/shell dependent command for utils/activate
     Using the bash shell:
         source Scripts/activate
 
     Using Windows cmd
         Scripts/activate.bat
 
-Run the following command to install the necessary packages: (could be done in a virtual environment)
+Enter Game/Game/ if not already. Run the following command to install the necessary packages: (could be done in a virtual environment)
 
     pip install -r requirements.txt
 
