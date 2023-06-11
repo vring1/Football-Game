@@ -60,7 +60,8 @@ If a game already exists, and the user goes back to home, they cannot reset the 
 When a player is submitted, we do not clear the form.
 Caused by our backend implementation, we do not have the chance of displaying which is the current user; not knowing this can be a bit confusing.
 
-
+## Views
+We have decided to use views in most queries in order to get text columns (e.g. country name, club name, player name) by id from joined tables in the same select. Otherwise we would have complicated the code by adding more select statements in order to select the texts from the primary key in the joined table.  
 
 
 
