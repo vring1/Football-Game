@@ -1,4 +1,5 @@
 # Football Game
+Football player guessing game developed using Python & Flask for the application and psycopg2 to create and use a database. The game was developed with reference to course NDAB16009U Development of Information Systems (UIS) at University of Copenhagen.
 
 ## E/R Diagram
 <img src="ER_diagram/ER_diagram.png">
